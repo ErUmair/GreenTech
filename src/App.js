@@ -19,7 +19,6 @@ import AMC from './Components/Support/AMC';
 import ChangeParts from './Components/Support/ChangeParts';
 import SpareParts from './Components/Support/SpareParts';
 import Training from './Components/Support/Training'
-import AdminPanel from './Components/Admin/AdminPanel';
 import Login from './Components/Login/Login';
 import Signup from './Components/Signup/Signup';
 // import Dashboard from './Components/Admin/Dashboard';
