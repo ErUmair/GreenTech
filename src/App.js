@@ -11,7 +11,7 @@ import Partner from './Components/About/Partner'
 import About from './Pages/About'
 import Body from './Components/Body/Body';
 import Enquiry from './Components/Enquirey/Form';
-import Products from './Pages/Products'
+// import Products from './Pages/ProductItem'
 import Contact_us from './Components/Support/Contact_us';
 import Policy from './Components/About/Policy';
 import AfterSalesService from './Components/Support/AfterSalesService';
@@ -19,12 +19,17 @@ import AMC from './Components/Support/AMC';
 import ChangeParts from './Components/Support/ChangeParts';
 import SpareParts from './Components/Support/SpareParts';
 import Training from './Components/Support/Training'
-import DashboardOld from './Components/Admin/DashboardOld';
+import AdminPanel from './Components/Admin/AdminPanel';
 import Login from './Components/Login/Login';
 import Signup from './Components/Signup/Signup';
-import Dashboard from './Components/Admin/Dashboard';
+// import Dashboard from './Components/Admin/Dashboard';
 import ResetPassword from './Components/Login/ResetPassword';
 import EnquiryForm from './Components/Enquirey/EnquiryForm';
+// import Products from './Pages/Products';
+import ProductItem from './Pages/ProductItem';
+import Products from './Pages/Products';
+import AdminDashboard from './Components/Admin/AdminDashboard';
+
 
 function App() {
   return (
@@ -37,22 +42,26 @@ function App() {
           <Route path='/About' element={<About />} />
           <Route path='/ourCorporate' element={<Ourcorporate />} />
           <Route path='/Policy' element={<Policy/>}/>
-          <Route path='/Form' element={<Form />} />
+          {/* <Route path='/Form' element={<Form />} /> */}
           <Route path='/History' element={<History />} />
           <Route path='/Partner' element={<Partner />} />
-          <Route path='/Enquiry' element={<Enquiry/>}/>
-          <Route path='/EnquiryForm' element={<EnquiryForm/>}/>
-          <Route path='/Products' element={<Products/>}/>
-          <Route path='/ContactUs' element={<Contact_us/>}/>
+          {/* <Route path='/Enquiry' element={<Enquiry/>}/> */}
+          <Route path='/ProductItem/:id' element={<ProductItem />}/>
+          <Route path='/Contact Us' element={<Contact_us/>}/>
           <Route path='/AfterSalesService' element={<AfterSalesService/>}/>
           <Route path='/Amc' element={<AMC/>}/>
           <Route path='/ChangeParts' element={<ChangeParts/>}/>
           <Route path='/SpareParts' element={<SpareParts/>}/>
           <Route path='/Training' element={<Training/>}/>
-          <Route path='/Dashboard' element={<Dashboard/>}/>
+          {/* <Route path='/AdminPanel' element={<AdminPanel/>}/> */}
           <Route path='/Login'element={<Login/>}/>
           <Route path='/Signup'element={<Signup/>}/>
-          <Route path='/reset-password'element={<ResetPassword/>}/>
+          {/* <Route path='/Dashboard' element={<Dashboard/>}/> */}
+          <Route path='/ResetPassword' element={<ResetPassword/>}/>
+          <Route path='/EnquiryForm' element={<EnquiryForm/>}/>
+          {/* <Route Path='/Products' element={<Products/>}/> */}
+          <Route path='/Products' element={<Products/>}/>
+          <Route path='/AdminDashboard' element={<AdminDashboard/>}/> 
         </Routes> 
           
       </BrowserRouter>

@@ -1,15 +1,21 @@
 import React from 'react'
-import Navigation from '../Components/Navbar/Navigation'
-import Card from '../Components/Products/Card'
+// import Navbar from '../Components/Navbar/Navbar'
+// import Card2 from '../Components/Products/Card2'
 import Footer from '../Components/Footer/Footer'
+import Product2 from '../Components/Products/Product2'
+import Navigation from '../Components/Navbar/Navigation'
 
-const Products = () => {
+const Products = () => {             
   return (
     <>
+    {/* <Navbar/> */}
     <Navigation/>
-    <Card/>
+    <Product2/>
+    {/* <Card2/> */}
     <Footer/>
+    
     </>
+  
   )
 }
 

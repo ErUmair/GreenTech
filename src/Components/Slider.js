@@ -1,24 +1,26 @@
 import React, { useEffect, useState } from 'react'
 import { Carousel } from '@material-tailwind/react'
 import axios from 'axios';
+import BASE_URL from '../Constant';
 
 const Slider = () => {
 
   const [images, setImages] = useState([]);
 
   useEffect(() => {
-    axios.get('http://192.168.1.47:8001/landing_page/image')
+    axios.get(`${BASE_URL}/landing_page/image`)
       .then(response => {
         console.log('Response:', response.data);
         if (Array.isArray(response.data) && response.data.length > 0) {
-          response.data.forEach((item)=>{
+         const newImages= response.data.map((item)=>{
             console.log('&&&&&&&&&&&&&&&&&',item.image)
-            const imageUrl = 'http://192.168.1.47:8001' + item.image;
-            const newArray = images
-            newArray.push(imageUrl)
-            console.log('-----------',newArray)
-            setImages(newArray);
+            return `${BASE_URL}${item.image}`;
+            // const newArray = images
+            // newArray.push(imageUrl)
+            // console.log('-----------',newArray)
+            // setImages(newArray);
           })
+          setImages(newImages);
         }
         else {
           console.error('Unexpected response format:', response.data);
@@ -71,7 +73,7 @@ const Slider = () => {
         )}
       >
 
-        {/* {images.map((imageUrl, index) => (
+        {images.map((imageUrl, index) => (
           <img
             key={index}
             src={imageUrl}
@@ -79,8 +81,8 @@ const Slider = () => {
             className="h-screen w-full object-cover"
             style={{ maxHeight: "75vh" }}
           />
-        ))} */}
-        <img
+        ))}
+        {/* <img
         src="https://images.unsplash.com/photo-1497436072909-60f360e1d4b1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2560&q=80"
         alt="image 1"
         className="h-screen w-full object-cover"
@@ -97,11 +99,10 @@ const Slider = () => {
         alt="image 3"
         className="h-screen w-full object-cover"
         style={{maxHeight: "75vh"}}
-      />
+      /> */}
       </Carousel>
 
     </>
   )
 }
 export default Slider
-

@@ -6,51 +6,52 @@ import Footer from '../Footer/Footer';
 import { FaUserPlus } from "react-icons/fa";
 import { useFormik } from "formik";
 import { signupSchema } from './signupSchema';
+import BASE_URL from '../../Constant';
 
 function Signup() {
 
-  const [formData, setFormData] = useState({
-    username: '',
-    email: '',
-    password: '',
-  });
+  // const [formData, setFormData] = useState({
+  //   username: '',
+  //   email: '',
+  //   password: '',
+  // });
 
   const navigate = useNavigate();
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
+  // const handleChange = (e) => {
+  //   const { name, value } = e.target;
+  //   setFormData({ ...formData, [name]: value });
+  // };
 
-  const handleSignup = async (e) => {
-    e.preventDefault();
+  // const handleSignup = async (e) => {
+  //   e.preventDefault();
 
-    try {
-      const response = await axios.post('API', formData, {
-        headers: {
-          'Content-type': 'application/json',
-        },
-      });
+  //   try {
+  //     const response = await axios.post('API', formData, {
+  //       headers: {
+  //         'Content-type': 'application/json',
+  //       },
+  //     });
 
-      if (response.status === 201) {
-        console.log('User registered successfully!');
-        console.log('Form submitted:', formData);
-        navigate('/Login');
-      } else {
-        console.error('Registration failed. Server responded with status:', response.status);
-        console.error('Error details:', response.data);
-      }
-    } catch (error) {
-      console.error('Error during registration:', error);
-      console.error('Error details:', error.response);
-    }
+  //     if (response.status === 201) {
+  //       console.log('User registered successfully!');
+  //       console.log('Form submitted:', formData);
+  //       navigate('/Login');
+  //     } else {
+  //       console.error('Registration failed. Server responded with status:', response.status);
+  //       console.error('Error details:', response.data);
+  //     }
+  //   } catch (error) {
+  //     console.error('Error during registration:', error);
+  //     console.error('Error details:', error.response);
+  //   }
 
-    setFormData({
-      username: '',
-      email: '',
-      password: '',
-    });
-  };
+  //   setFormData({
+  //     username: '',
+  //     email: '',
+  //     password: '',
+  //   });
+  // };
 
   const formik = useFormik({
     initialValues: {
@@ -64,8 +65,19 @@ function Signup() {
       console.log(values);
       try {
         // Send form data to the server
-        const response = await axios.post('YOUR_SERVER_ENDPOINT', values);
-
+        const response = await axios.post(`${BASE_URL}/accounts/register/`, values,{
+        headers: {
+                  'Content-type': 'application/json',
+                },
+              });
+              if (response.status === 201) {
+                      console.log('User registered successfully!');
+                      console.log('Form submitted:', values);
+                      navigate('/');
+                    } else {
+                      console.error('Registration failed. Server responded with status:', response.status);
+                      console.error('Error details:', response.data);
+                    }
         // Handle the response from the server as needed
         console.log('Server response:', response.data);
       } catch (error) {

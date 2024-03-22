@@ -5,49 +5,58 @@ import Navigation from '../Navbar/Navigation';
 import Footer from '../Footer/Footer';
 import { BiLogIn } from "react-icons/bi";
 import { useFormik } from "formik";
-import { loginSchema } from './loginSchema';
+// import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { loginSchema } from '../Login/loginSchema';
+import BASE_URL from '../../Constant';
 
 function Login() {
 
-  const [loginData, setLoginData] = useState({
-    username: '',
-    password: '',
-  });
+  // const [loginData, setLoginData] = useState({
+  //   username: '',
+  //   password: '',
+  // });
   const navigate = useNavigate();
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setLoginData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
+  // const handleInputChange = (e) => {
+  //   const { name, value } = e.target;
+  //   setLoginData((prevData) => ({
+  //     ...prevData,
+  //     [name]: value,
+  //   }));
+  // };
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
-
-
+  // const handleLogin = async (e) => {
+  //   e.preventDefault();
 
 
-    try {
-      const response = await axios.post('API', loginData);
-      if (response.status === 200) {
-        console.log('Login successful!');
-        console.log('Logging in with:', loginData);
-        // navigate('/Dashboard');
-      } else {
-        console.error('Login failed. Server responded with status:', response.status);
-      }
-    }
-    catch (error) {
-      console.error('Error during login:', error);
-    }
 
-    setLoginData({
-      username: '',
-      password: '',
-    });
-  };
+
+  //   try {
+  //     const response = await axios.post(`${BASE_URL}/accounts/login/`, loginData);
+  //     if (response.status === 200) {
+  //       console.log('Login successful!');
+  //       console.log('Logging in with:', loginData);
+  //       // navigate('/Dashboard');
+  //       if(response.data.admin_info){
+  //                   navigate('/Dashboard')
+  //                 }
+  //                 else if(response.data.user_info){
+  //                   navigate('/')
+  //                 }
+  //     } else {
+  //       console.error('Login failed. Server responded with status:', response.status);
+  //     }
+  //   }
+  //   catch (error) {
+  //     console.error('Error during login:', error);
+  //   }
+
+  //   setLoginData({
+  //     username: '',
+  //     password: '',
+  //   });
+
+  // };
 
   const formik = useFormik({
     initialValues: {
@@ -59,8 +68,20 @@ function Login() {
       console.log(values);
       try {
         // Send form data to the server
-        const response = await axios.post('YOUR_SERVER_ENDPOINT', values);
-
+        const response = await axios.post(`${BASE_URL}/accounts/login/`, values);
+        if (response.status === 200) {
+                console.log('Login successful!');
+                console.log('Logging in with:', values);
+                // navigate('/Dashboard');
+                if(response.data.admin_info){
+                            navigate('/Dashboard')
+                          }
+                          else if(response.data.user_info){
+                            navigate('/')
+                          }
+              } else {
+                console.error('Login failed. Server responded with status:', response.status);
+              }
         // Handle the response from the server as needed
         console.log('Server response:', response.data);
       } catch (error) {
@@ -165,7 +186,7 @@ function Login() {
                     </div>
                     <label htmlFor="remember" className="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Remember me</label>
                   </div>  */}
-                  <Link to="/reset-password" className="text-sm text-blue-700 hover:underline dark:text-blue-500">Forgate Password?</Link>
+                  <Link to="/ResetPassword" className="text-sm text-blue-700 hover:underline dark:text-blue-500">Forgate Password?</Link>
                 </div>
                 <button type="submit" className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Login</button>
                 <div className="text-sm font-medium text-gray-500 dark:text-gray-300">

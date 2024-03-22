@@ -22,13 +22,13 @@ code {
   font-family: 'source-code-pro', 'Menlo', 'Monaco', 'Consolas', 'Courier New','monospace';
 }
 
-.custom-height-card {
+/* .custom-height-card {
   max-height: 300px; 
 }
 
 .custom-width-card{
   max-width: 500px;
-}
+} */
 
 /* .custom-class{
   backdrop-saturate:initial !important;
